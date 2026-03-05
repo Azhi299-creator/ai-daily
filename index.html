@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> AI 日报 - 2026年03月05日</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-card: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --text-tertiary: #a1a1a6;
+            --border-color: #e5e5e7;
+            --accent-blue: #007aff;
+            --accent-green: #34c759;
+            --accent-orange: #ff9500;
+            --accent-purple: #af52de;
+            --accent-red: #ff3b30;
+            --accent-teal: #5ac8fa;
+            --tag-bg: #f2f2f7;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --shadow-hover: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #000000;
+                --bg-secondary: #1c1c1e;
+                --bg-card: #2c2c2e;
+                --text-primary: #ffffff;
+                --text-secondary: #8e8e93;
+                --text-tertiary: #636366;
+                --border-color: #38383a;
+                --tag-bg: #3a3a3c;
+                --shadow: 0 2px 12px rgba(0,0,0,0.3);
+                --shadow-hover: 0 4px 20px rgba(0,0,0,0.4);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-date {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .header-time-range {
+            font-size: 13px;
+            opacity: 0.75;
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-top: 8px;
+        }
+
+        .header-source {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 12px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 32px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Trends Section */
+        .trends-section {
+            margin-bottom: 24px;
+        }
+
+        .trend-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .trend-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .trend-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .trend-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .trend-meta {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .trend-examples {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .trend-example {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .trend-example::before {
+            content: '•';
+            position: absolute;
+            left: 4px;
+            color: var(--accent-blue);
+        }
+
+        /* News Cards */
+        .news-section {
+            margin-bottom: 24px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .news-category {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+            background: var(--tag-bg);
+            color: var(--accent-blue);
+        }
+
+        .news-category.model { color: var(--accent-purple); }
+        .news-category.compute { color: var(--accent-teal); }
+        .news-category.application { color: var(--accent-green); }
+        .news-category.platform { color: var(--accent-blue); }
+        .news-category.startup { color: var(--accent-orange); }
+        .news-category.policy { color: var(--accent-red); }
+        .news-category.security { color: #ff6b6b; }
+        .news-category.cooperation { color: #4ecdc4; }
+        .news-category.international { color: #45b7d1; }
+
+        .news-confidence {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .news-confidence.high {
+            background: rgba(52, 199, 89, 0.15);
+            color: var(--accent-green);
+        }
+
+        .news-confidence.medium {
+            background: rgba(255, 149, 0, 0.15);
+            color: var(--accent-orange);
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .news-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .news-tag {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--tag-bg);
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        .news-summary {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .news-points {
+            margin-bottom: 14px;
+        }
+
+        .news-point {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .news-point::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .news-comment {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding: 14px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+
+        .news-comment::before {
+            content: '💡 ';
+            font-style: normal;
+        }
+
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .news-time {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .news-link {
+            font-size: 13px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 4px 0 16px;
+            margin-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .category-filter::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .filter-btn.active:hover {
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .news-title {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .trend-title {
+                font-size: 15px;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>36kr AI 日报</h1>
+                <div class="header-date">2026年03月05日</div>
+                <div class="header-time-range">统计区间：03月04日 17:00 — 2026年03月05日 17:00 (CST)</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 今日趋势Top5 -->
+        <section class="trends-section">
+            <h2 class="section-title">今日趋势 Top 5</h2>
+
+            <div class="trend-card">
+                <div class="trend-title">
+                    <span class="trend-number">1</span>
+                    AI人才争夺战白热化，大厂面临核心人才流失危机
+                </div>
+                <div class="trend-desc">OpenAI研究VP转投Anthropic、阿里Qwen核心负责人林俊旸离职等事件频发，显示AI人才竞争已进入白热化阶段。顶尖AI人才正从大型科技公司流向更具创新活力的平台，人才留存率成为衡量AI公司核心竞争力的关键指标。</div>
+                <div class="trend-meta">来源：4条新闻</div>
+                <div class="trend-examples">
+                    <div class="trend-example">OpenAI研究VP离职转投Anthropic</div><div class="trend-example">阿里批准林俊旸离职，CTO接管千问</div><div class="trend-example">GPT-5核心推手闪电跳槽Anthropic</div>
+                </div>
+            </div>
+
+            <div class="trend-card">
+                <div class="trend-title">
+                    <span class="trend-number">2</span>
+                    AI应用从工具向情感陪伴与主动服务进化
+                </div>
+                <div class="trend-desc">AI产品正在突破纯工具属性，向情感陪伴和主动服务方向发展。年轻人在AI身上寻找人情味儿、AI眼镜具备办事能力、无人餐厅机器人提供无感服务等，显示AI正在深度融入人类生活场景。</div>
+                <div class="trend-meta">来源：4条新闻</div>
+                <div class="trend-examples">
+                    <div class="trend-example">这届年轻人在AI身上寻找人情味儿</div><div class="trend-example">AI办事成为AI眼镜的刚需</div><div class="trend-example">无人餐厅里机器人给我上了一课</div>
+                </div>
+            </div>
+
+            <div class="trend-card">
+                <div class="trend-title">
+                    <span class="trend-number">3</span>
+                    AI安全与反欺诈成为创业新风口
+                </div>
+                <div class="trend-desc">随着AI能力增强，AI安全与反欺诈领域迎来爆发期。YC将AI欺诈猎手列为重点创业方向，智能体网络正在重塑反欺诈行业格局。数据隐私、API安全和智能体自身安全成为行业关注焦点。</div>
+                <div class="trend-meta">来源：3条新闻</div>
+                <div class="trend-examples">
+                    <div class="trend-example">YC点名AI欺诈猎手创业方向</div><div class="trend-example">AI反欺诈的尽头是智能体安全</div><div class="trend-example">Gemini密钥被盗致创业团队损失57万</div>
+                </div>
+            </div>
+
+            <div class="trend-card">
+                <div class="trend-title">
+                    <span class="trend-number">4</span>
+                    Scaling Law持续有效，2026年AI能力将加速跃升
+                </div>
+                <div class="trend-desc">Anthropic CEO Amodei表示Scaling没有墙，AI实验室内部进展远超公众想象。2026年AI加速度将让全人类措手不及，模型能力的持续提升将带来更多应用场景的突破。</div>
+                <div class="trend-meta">来源：2条新闻</div>
+                <div class="trend-examples">
+                    <div class="trend-example">Scaling没有墙，AI实验室真相远超想象</div><div class="trend-example">Nature重磅：医疗AI新突破解决医生短缺</div>
+                </div>
+            </div>
+
+            <div class="trend-card">
+                <div class="trend-title">
+                    <span class="trend-number">5</span>
+                    AI内容创作颠覆传统影视与短剧行业
+                </div>
+                <div class="trend-desc">AI仿真人短剧技术成熟，正在快速渗透影视内容生产领域。从AI短剧到AI预制菜式内容，创作门槛大幅降低，传统影视行业面临颠覆性变革，效率与创意的平衡成为行业新课题。</div>
+                <div class="trend-meta">来源：3条新闻</div>
+                <div class="trend-examples">
+                    <div class="trend-example">凶猛AI剧：影视版预制菜上桌了</div><div class="trend-example">八百倍速短剧市场会被AI仿真人颠覆吗</div><div class="trend-example">AI仿真人短剧技术成熟</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 今日20条新闻 -->
+        <section class="news-section">
+            <h2 class="section-title">今日20条新闻总览</h2>
+
+            <div class="category-filter">
+                <button class="filter-btn active" onclick="filterNews('all')">全部</button>
+                <button class="filter-btn" onclick="filterNews('model')">模型与算法</button>
+                <button class="filter-btn" onclick="filterNews('application')">应用与产品</button>
+                <button class="filter-btn" onclick="filterNews('platform')">大厂与平台</button>
+                <button class="filter-btn" onclick="filterNews('startup')">创业与融资</button>
+                <button class="filter-btn" onclick="filterNews('security')">安全与伦理</button>
+            </div>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">聊聊DeepMind创始人哈萨比斯：一个科学家与失控的AI竞赛</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#DeepMind</span><span class="news-tag">#AI科学家</span><span class="news-tag">#AGI</span><span class="news-tag">#Google</span><span class="news-tag">#AI竞赛</span>
+                </div>
+                <div class="news-summary">DeepMind创始人哈萨比斯的内心世界与AI竞赛思考</div>
+                <div class="news-points">
+                    <div class="news-point">科学家与商业的平衡</div><div class="news-point">AGI研发的使命感</div><div class="news-point">AI竞赛的失控风险</div>
+                </div>
+                <div class="news-comment">哈萨比斯作为AI领域的顶级科学家，其对AGI的追求反映了行业核心矛盾：技术理想与商业现实的冲突。文章深入剖析了这位打造人类终极智能的科学家内心，值得AI从业者思考技术发展的边界与责任。</div>
+                <div class="news-footer">
+                    <span class="news-time">4分钟前 · 硅谷101</span>
+                    <a href="https://36kr.com/p/3709739178488328" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">凶猛AI剧：影视版「预制菜」上桌了</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#AI视频</span><span class="news-tag">#短剧</span><span class="news-tag">#内容创作</span><span class="news-tag">#AIGC</span><span class="news-tag">#影视</span>
+                </div>
+                <div class="news-summary">AI短剧兴起，影视行业迎来「预制菜」时代</div>
+                <div class="news-points">
+                    <div class="news-point">AI仿真人短剧技术成熟</div><div class="news-point">短剧市场面临颠覆</div><div class="news-point">内容创作门槛降低</div>
+                </div>
+                <div class="news-comment">AI短剧正在快速渗透影视内容生产领域，这种「预制电子榨菜」虽然降低了创作成本，但也引发了对内容质量和原创性的担忧。行业需要在效率与创意之间找到平衡点。</div>
+                <div class="news-footer">
+                    <span class="news-time">33分钟前 · 惊蛰研究所</span>
+                    <a href="https://36kr.com/p/3709554648625928" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="security">
+                <div class="news-header">
+                    <span class="news-category security">安全与伦理</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">谷歌曾说「不是秘密」的东西，Gemini时代成了提款机：三人创业团队48小时濒临破产</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#Gemini</span><span class="news-tag">#API安全</span><span class="news-tag">#创业风险</span><span class="news-tag">#谷歌</span><span class="news-tag">#数据泄露</span>
+                </div>
+                <div class="news-summary">Gemini API密钥泄露致创业团队48小时损失57万</div>
+                <div class="news-points">
+                    <div class="news-point">API密钥被盗用</div><div class="news-point">谷歌拒绝赔偿</div><div class="news-point">初创企业安全意识薄弱</div>
+                </div>
+                <div class="news-comment">这起事件暴露了AI时代初创企业面临的严峻安全挑战。API密钥管理、用量监控和应急响应机制是企业使用大模型服务时必须重视的环节。谷歌的拒赔态度也引发了对平台责任的讨论。</div>
+                <div class="news-footer">
+                    <span class="news-time">1小时前 · 极客邦科技InfoQ</span>
+                    <a href="https://36kr.com/p/3709642439143561" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">阿里批准林俊旸离职，CTO周靖人接管千问，Gemini周浩确定加盟</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#阿里</span><span class="news-tag">#Qwen</span><span class="news-tag">#人事变动</span><span class="news-tag">#通义千问</span><span class="news-tag">#AI人才</span>
+                </div>
+                <div class="news-summary">阿里Qwen核心负责人林俊旸离职，CTO周靖人接管</div>
+                <div class="news-points">
+                    <div class="news-point">林俊旸正式获批离职</div><div class="news-point">周靖人接管千问团队</div><div class="news-point">Gemini周浩确定加盟</div>
+                </div>
+                <div class="news-comment">这是近期国内AI领域最重大的人事变动之一。林俊旸的离职标志着阿里Qwen团队进入新阶段，而CTO直接接管显示了阿里对千问业务的重视程度。吴泳铭内部信强调「技术不进则退」，反映出大厂在AI竞赛中的焦虑。</div>
+                <div class="news-footer">
+                    <span class="news-time">1小时前 · 量子位</span>
+                    <a href="https://36kr.com/p/3709665960636552" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="startup">
+                <div class="news-header">
+                    <span class="news-category startup">创业与融资</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">YC点名创业方向：AI欺诈猎手，可能干掉整个反欺诈行业</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#AI Agent</span><span class="news-tag">#反欺诈</span><span class="news-tag">#YC</span><span class="news-tag">#智能体</span><span class="news-tag">#创业方向</span>
+                </div>
+                <div class="news-summary">YC点名AI欺诈猎手为创业方向，智能体将颠覆反欺诈行业</div>
+                <div class="news-points">
+                    <div class="news-point">AI智能体对抗AI欺诈</div><div class="news-point">群体智能与数据协同</div><div class="news-point">反欺诈进化为智能体安全</div>
+                </div>
+                <div class="news-comment">YC将AI反欺诈列为重点创业方向，预示着这一领域将迎来爆发期。智能体网络能以毫秒级响应扭转攻防不对称的劣势，但同时也面临数据隐私和AI自身安全的挑战。</div>
+                <div class="news-footer">
+                    <span class="news-time">2小时前 · 新智元</span>
+                    <a href="https://36kr.com/p/3709665862365574" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">阿里Qwen人事震荡48小时</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#阿里</span><span class="news-tag">#Qwen</span><span class="news-tag">#人事震荡</span><span class="news-tag">#AI组织架构</span>
+                </div>
+                <div class="news-summary">阿里Qwen团队人事震荡持续48小时，高层定调后风波未平</div>
+                <div class="news-points">
+                    <div class="news-point">林俊旸离职消息落定</div><div class="news-point">高层内部定调</div><div class="news-point">行业讨论持续发酵</div>
+                </div>
+                <div class="news-comment">阿里Qwen的人事变动引发了业界对AI native组织管理的深度讨论。如何在大型科技公司内部保持AI团队的创新活力，同时平衡商业目标与技术追求，是所有大厂面临的共同挑战。</div>
+                <div class="news-footer">
+                    <span class="news-time">2小时前 · 36氪的朋友们</span>
+                    <a href="https://36kr.com/p/3709664994799746" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">无人餐厅里，机器人给我上了一课</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#机器人</span><span class="news-tag">#无人餐厅</span><span class="news-tag">#服务AI</span><span class="news-tag">#商用落地</span>
+                </div>
+                <div class="news-summary">无人餐厅机器人服务体验：技术无迹可寻时的服务本质</div>
+                <div class="news-points">
+                    <div class="news-point">机器人服务无处不在</div><div class="news-point">技术隐形化趋势</div><div class="news-point">服务体验的本质回归</div>
+                </div>
+                <div class="news-comment">无人餐厅案例展示了AI技术成熟后的理想状态：技术退居幕后，服务自然呈现。这种「无迹可寻」的技术应用代表了AI商业化的终极形态，值得服务行业借鉴。</div>
+                <div class="news-footer">
+                    <span class="news-time">3小时前 · 互联网那些事</span>
+                    <a href="https://36kr.com/p/3709414853259656" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">林俊旸，只恨不是梁文锋</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#阿里</span><span class="news-tag">#Qwen</span><span class="news-tag">#DeepSeek</span><span class="news-tag">#梁文锋</span><span class="news-tag">#AI人才</span>
+                </div>
+                <div class="news-summary">林俊旸与梁文锋对比：Qwen与DeepSeek的不同命运</div>
+                <div class="news-points">
+                    <div class="news-point">Qwen不是DeepSeek</div><div class="news-point">阿里不是字节</div><div class="news-point">组织架构决定创新边界</div>
+                </div>
+                <div class="news-comment">文章通过对比林俊旸与梁文锋，揭示了大型科技公司内部AI创新的结构性困境。DeepSeek的崛起证明，有时候独立的组织架构更适合突破性创新，而大厂的内嵌模式可能限制技术人才的发挥空间。</div>
+                <div class="news-footer">
+                    <span class="news-time">4小时前 · 36氪的朋友们</span>
+                    <a href="https://36kr.com/p/3709435935797637" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="security">
+                <div class="news-header">
+                    <span class="news-category security">安全与伦理</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">欺诈猎手：AI反欺诈的尽头是智能体安全</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#AI反欺诈</span><span class="news-tag">#智能体安全</span><span class="news-tag">#网络安全</span><span class="news-tag">#AI Agent</span>
+                </div>
+                <div class="news-summary">AI反欺诈的终极形态是智能体安全，信任将成为业务内生基因</div>
+                <div class="news-points">
+                    <div class="news-point">智能体颠覆反欺诈格局</div><div class="news-point">攻防非对称竞争</div><div class="news-point">数据隐私与AI安全是关键</div>
+                </div>
+                <div class="news-comment">文章深刻剖析了AI时代反欺诈行业的演变方向。智能体网络通过群体智能和毫秒级响应能力，正在重塑整个安全行业。未来反欺诈将进化为「智能体安全」，信任将成为所有业务的底层基础设施。</div>
+                <div class="news-footer">
+                    <span class="news-time">4小时前 · 汪德嘉</span>
+                    <a href="https://36kr.com/p/3709459900576260" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">林俊旸离开Qwen给AI公司们提出的五个问题</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#阿里</span><span class="news-tag">#Qwen</span><span class="news-tag">#AI管理</span><span class="news-tag">#组织架构</span><span class="news-tag">#AI Native</span>
+                </div>
+                <div class="news-summary">林俊旸离职给AI公司提出的五个组织管理难题</div>
+                <div class="news-points">
+                    <div class="news-point">AI native组织的管理挑战</div><div class="news-point">技术追求与商业目标平衡</div><div class="news-point">人才激励与留存困境</div>
+                </div>
+                <div class="news-comment">文章从组织管理角度分析了AI公司面临的深层挑战。所有号称AI native的公司都在面对同样的问题：如何在保持技术创新的同时建立可持续的商业模式，如何激励和留住顶尖AI人才。</div>
+                <div class="news-footer">
+                    <span class="news-time">4小时前 · 硅星人Pro</span>
+                    <a href="https://36kr.com/p/3709471861059973" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">八百倍速的短剧市场，会被AI仿真人短剧颠覆吗？</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#AI短剧</span><span class="news-tag">#AIGC</span><span class="news-tag">#内容创作</span><span class="news-tag">#仿真人</span><span class="news-tag">#影视</span>
+                </div>
+                <div class="news-summary">AI仿真人短剧可能颠覆八百倍速的短剧市场</div>
+                <div class="news-points">
+                    <div class="news-point">短剧变天话题上热搜</div><div class="news-point">AI仿真人技术成熟</div><div class="news-point">内容生产门槛大幅降低</div>
+                </div>
+                <div class="news-comment">AI仿真人短剧的兴起将对传统短剧市场产生颠覆性影响。这种技术不仅降低了制作成本，还可能改变内容创作的整个流程。行业需要关注版权、伦理和内容质量等衍生问题。</div>
+                <div class="news-footer">
+                    <span class="news-time">5小时前 · 眸娱</span>
+                    <a href="https://36kr.com/p/3709327028220293" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">又走一个，OpenAI研究VP离职，转投Anthropic做RL研究员</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#OpenAI</span><span class="news-tag">#Anthropic</span><span class="news-tag">#人才流失</span><span class="news-tag">#RL</span><span class="news-tag">#GPT-5</span>
+                </div>
+                <div class="news-summary">OpenAI研究VP Max Schwarzer离职，转投Anthropic做RL研究员</div>
+                <div class="news-points">
+                    <div class="news-point">GPT-5核心负责人离职</div><div class="news-point">加入竞争对手Anthropic</div><div class="news-point">OpenAI人才地震持续</div>
+                </div>
+                <div class="news-comment">OpenAI的人才流失问题愈发严重。Max Schwarzer作为o1、o3和GPT-5系列post-training的核心人物转投Anthropic，显示了OpenAI在人才留存方面的困境。这对OpenAI的技术路线和研发进度可能产生重大影响。</div>
+                <div class="news-footer">
+                    <span class="news-time">5小时前 · 新智元</span>
+                    <a href="https://36kr.com/p/3709471599194504" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="platform">
+                <div class="news-header">
+                    <span class="news-category platform">大厂与平台</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">Claude惨遭停用，GPT-4.1接任，绝密备忘录爆出，怒撕「硅谷甄嬛」奥特曼</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#OpenAI</span><span class="news-tag">#Claude</span><span class="news-tag">#Anthropic</span><span class="news-tag">#硅谷宫斗</span><span class="news-tag">#奥特曼</span>
+                </div>
+                <div class="news-summary">Claude停用事件背后的硅谷宫斗：OpenAI与Anthropic的明争暗斗</div>
+                <div class="news-points">
+                    <div class="news-point">Claude遭停用引发争议</div><div class="news-point">GPT-4.1接任</div><div class="news-point">绝密备忘录曝光</div>
+                </div>
+                <div class="news-comment">硅谷AI公司的竞争已进入白热化阶段，从技术研发延伸到市场策略和公关战。这场「宫斗」反映了AI行业头部公司之间的激烈竞争，以及各自不同的发展理念和路径选择。</div>
+                <div class="news-footer">
+                    <span class="news-time">5小时前 · 新智元</span>
+                    <a href="https://36kr.com/p/3709468850745733" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">Nature重磅：医疗AI新突破，人类放射科医生短缺难题被解决了</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#医疗AI</span><span class="news-tag">#Nature</span><span class="news-tag">#放射科</span><span class="news-tag">#AI诊断</span><span class="news-tag">#医疗应用</span>
+                </div>
+                <div class="news-summary">Nature重磅：医疗AI新突破，解决放射科医生短缺难题</div>
+                <div class="news-points">
+                    <div class="news-point">医疗AI技术突破</div><div class="news-point">放射科医生短缺缓解</div><div class="news-point">为人类医生减负</div>
+                </div>
+                <div class="news-comment">这是AI在医疗领域的重要进展。Nature发表的研究表明，AI在医学影像诊断方面已达到甚至超越人类专家水平。这不仅能缓解医生短缺问题，还能提高诊断效率和准确性，具有重大社会价值。</div>
+                <div class="news-footer">
+                    <span class="news-time">5小时前 · 账号已注销</span>
+                    <a href="https://36kr.com/p/3709367828295813" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">企业「养龙虾」指南：引入AI助理的四大困惑与破局之道</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#OpenClaw</span><span class="news-tag">#AI助理</span><span class="news-tag">#企业AI</span><span class="news-tag">#AI落地</span><span class="news-tag">#数字化转型</span>
+                </div>
+                <div class="news-summary">企业引入AI助理的四大困惑与破局之道</div>
+                <div class="news-points">
+                    <div class="news-point">AI助理落地困惑</div><div class="news-point">成本与收益平衡</div><div class="news-point">组织变革挑战</div>
+                </div>
+                <div class="news-comment">文章从实践角度分析了企业引入AI助理面临的现实问题。技术只是第一步，真正的挑战在于组织流程再造、员工技能升级和ROI评估。企业需要系统性地规划AI落地路径。</div>
+                <div class="news-footer">
+                    <span class="news-time">6小时前 · 湘江数评-老杨</span>
+                    <a href="https://36kr.com/p/3709232499241091" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="security">
+                <div class="news-header">
+                    <span class="news-category security">安全与伦理</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">你有没有偷偷删除与AI的聊天记录？</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#AI隐私</span><span class="news-tag">#聊天记录</span><span class="news-tag">#数据安全</span><span class="news-tag">#用户行为</span>
+                </div>
+                <div class="news-summary">用户与AI聊天记录成为新的隐私关注点</div>
+                <div class="news-points">
+                    <div class="news-point">AI聊天记录敏感</div><div class="news-point">继浏览器记录后的第三波</div><div class="news-point">隐私边界模糊</div>
+                </div>
+                <div class="news-comment">随着AI成为日常工具，用户与AI的交互记录成为新的隐私敏感区。这些记录可能包含个人想法、情感倾诉甚至秘密，如何保护这些数据是AI服务提供商必须正视的问题。</div>
+                <div class="news-footer">
+                    <span class="news-time">6小时前 · 长三角momo</span>
+                    <a href="https://36kr.com/p/3709311167951235" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">OpenClaw 25万星背后：为什么它仍然只是个「半拉子工程」</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#OpenClaw</span><span class="news-tag">#开源</span><span class="news-tag">#AI工具</span><span class="news-tag">#GitHub</span><span class="news-tag">#开发者</span>
+                </div>
+                <div class="news-summary">OpenClaw 25万星背后：为何仍是「半拉子工程」</div>
+                <div class="news-points">
+                    <div class="news-point">OpenClaw获25万星</div><div class="news-point">功能仍不完善</div><div class="news-point">开源项目的困境</div>
+                </div>
+                <div class="news-comment">OpenClaw作为现象级开源项目，虽然获得巨大关注，但在功能完整性和稳定性方面仍有不足。这反映了热门开源项目面临的共同挑战：关注度不等于成熟度，社区贡献与核心开发需要更好平衡。</div>
+                <div class="news-footer">
+                    <span class="news-time">6小时前 · 李智勇</span>
+                    <a href="https://36kr.com/p/3709438118998531" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="application">
+                <div class="news-header">
+                    <span class="news-category application">应用与产品</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">对话千问AI硬件负责人宋刚：AI办事会成为AI眼镜的刚需</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#AI眼镜</span><span class="news-tag">#千问</span><span class="news-tag">#AI硬件</span><span class="news-tag">#智能穿戴</span><span class="news-tag">#AI Agent</span>
+                </div>
+                <div class="news-summary">千问AI眼镜将具备点外卖、打车等办事能力</div>
+                <div class="news-points">
+                    <div class="news-point">AI办事成为刚需</div><div class="news-point">全面接入千问APP</div><div class="news-point">AI眼镜功能升级</div>
+                </div>
+                <div class="news-comment">AI眼镜正在从「玩具」向「工具」进化。千问将办事能力集成到AI眼镜中，代表了AI硬件的重要发展方向：从被动响应到主动服务，从信息获取到任务执行。</div>
+                <div class="news-footer">
+                    <span class="news-time">6小时前 · 晓曦</span>
+                    <a href="https://36kr.com/p/3709436321411459" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="model">
+                <div class="news-header">
+                    <span class="news-category model">模型与算法</span>
+                    <span class="news-confidence high">置信度：高</span>
+                </div>
+                <h3 class="news-title">Scaling没有墙，Anthropic CEO：AI实验室真相远超公众想象</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#Scaling Law</span><span class="news-tag">#Anthropic</span><span class="news-tag">#AI发展</span><span class="news-tag">#Amodei</span><span class="news-tag">#AGI</span>
+                </div>
+                <div class="news-summary">Anthropic CEO：Scaling没有墙，AI实验室真相远超公众想象</div>
+                <div class="news-points">
+                    <div class="news-point">Scaling Law继续有效</div><div class="news-point">2026 AI加速度惊人</div><div class="news-point">实验室进展远超公开信息</div>
+                </div>
+                <div class="news-comment">Amodei的表态揭示了AI发展的真实情况：实验室内部的进展远超公众所知。Scaling Law的持续有效意味着AI能力还将快速提升，2026年可能是AI能力跃升的关键年份，社会需要为此做好准备。</div>
+                <div class="news-footer">
+                    <span class="news-time">7小时前 · 新智元</span>
+                    <a href="https://36kr.com/p/3709346127933831" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+            <article class="news-card" data-category="startup">
+                <div class="news-header">
+                    <span class="news-category startup">创业与融资</span>
+                    <span class="news-confidence medium">置信度：中</span>
+                </div>
+                <h3 class="news-title">人与 OpenClaw 的八种情绪</h3>
+                <div class="news-tags">
+                    <span class="news-tag">#OpenClaw</span><span class="news-tag">#真格基金</span><span class="news-tag">#投资</span><span class="news-tag">#AI创业</span><span class="news-tag">#开发者工具</span>
+                </div>
+                <div class="news-summary">人与OpenClaw的八种情绪：真格基金的投资观察</div>
+                <div class="news-points">
+                    <div class="news-point">开发者与AI的关系</div><div class="news-point">情绪价值与工具价值</div><div class="news-point">AI产品的新维度</div>
+                </div>
+                <div class="news-comment">真格基金从投资视角分析了OpenClaw现象背后的用户情感连接。AI产品不仅是工具，还在成为用户的「伙伴」，这种情感维度的价值可能是AI产品差异化的关键。</div>
+                <div class="news-footer">
+                    <span class="news-time">7小时前 · 真格基金</span>
+                    <a href="https://36kr.com/p/3709353960944000" class="news-link" target="_blank" rel="noopener noreferrer">阅读原文 →</a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>36kr AI 日报 · 每日 17:00 更新</p>
+            <p style="margin-top: 8px;">数据来源：<a href="https://36kr.com/information/AI/" target="_blank" rel="noopener noreferrer">36kr AI 频道</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function filterNews(category) {
+            const cards = document.querySelectorAll('.news-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // 更新按钮状态
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === '全部' && category === 'all') {
+                    btn.classList.add('active');
+                } else if (btn.getAttribute('onclick').includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // 显示/隐藏卡片
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
